@@ -17,7 +17,7 @@ metadata:
 stringData:
   type: git
   project: guestbook
-  url: https://github.com/dhpup/kargo-demo-v2
+  url: https://github.com/dhpup/kargo.git
   username: dhpup
   password: ${GITHUB_PAT}
 ---
@@ -33,7 +33,7 @@ metadata:
 spec:
   subscriptions:
   - git:
-      repoURL: https://github.com/dhpup/kargo-demo-v2.git
+      repoURL: https://github.com/dhpup/kargo.git
       branch: main
   - image:
       repoURL: ghcr.io/dhpup/guestbook
@@ -65,7 +65,7 @@ spec:
     warehouse: guestbook
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/dhpup/kargo-demo-v2.git
+    - repoURL: https://github.com/dhpup/kargo.git
       writeBranch: stage/test
       kustomize:
         images:
@@ -91,7 +91,7 @@ spec:
     - name: test
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/dhpup/kargo-demo-v2.git
+    - repoURL: https://github.com/dhpup/kargo.git
       writeBranch: stage/uat
       kustomize:
         images:
@@ -120,7 +120,7 @@ spec:
     - name: uat
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/dhpup/kargo-demo-v2.git
+    - repoURL: https://github.com/dhpup/kargo.git
       writeBranch: stage/prod-useast
       kustomize:
         images:
@@ -146,7 +146,7 @@ spec:
     - name: uat
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/dhpup/kargo-demo-v2.git
+    - repoURL: https://github.com/dhpup/kargo.git
       writeBranch: stage/prod-uswest
       kustomize:
         images:

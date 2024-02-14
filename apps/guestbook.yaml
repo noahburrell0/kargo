@@ -23,7 +23,7 @@ spec:
         targetRevision: guestbook/stage/{{stage}}
         path: guestbook/stages/{{stage}}
       destination:
-        server: https://kubernetes.default.svc
+        server: mac5
         namespace: guestbook-{{stage}}
       syncPolicy:
         syncOptions:

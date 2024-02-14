@@ -1,0 +1,114 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Warehouse
+metadata:
+  name: guestbook
+  namespace: guestbook
+spec:
+  subscriptions:
+  - git:
+      repoURL: https://github.com/dhpup/kargo-demo-v2.git
+      branch: main
+  - image:
+      repoURL: ghcr.io/dhpup/guestbook
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: PromotionPolicy
+metadata:
+  name: test-pp
+  namespace: guestbook
+stage: test
+enableAutoPromotion: true
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: test
+  namespace: guestbook
+  annotations:
+    kargo.akuity.io/color: purple
+spec:
+  subscriptions:
+    warehouse: guestbook
+  promotionMechanisms:
+    gitRepoUpdates:
+    - repoURL: https://github.com/dhpup/kargo-demo-v2.git
+      writeBranch: stage/test
+      kustomize:
+        images:
+        - image: ghcr.io/dhpup/guestbook
+          path: stages/test
+    argoCDAppUpdates:
+    - appName: guestbook-test
+      appNamespace: argocd
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: uat
+  namespace: guestbook
+  annotations:
+    kargo.akuity.io/color: blue
+spec:
+  subscriptions:
+    upstreamStages:
+    - name: test
+  promotionMechanisms:
+    gitRepoUpdates:
+    - repoURL: https://github.com/dhpup/kargo-demo-v2.git
+      writeBranch: stage/uat
+      kustomize:
+        images:
+        - image: ghcr.io/dhpup/guestbook
+          path: stages/uat
+    argoCDAppUpdates:
+    - appName: guestbook-uat
+      appNamespace: argocd
+  verification:
+    analysisTemplates:
+    - name: guestbook-verification
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: prod-useast
+  namespace: guestbook
+  annotations:
+    kargo.akuity.io/color: cyan
+spec:
+  subscriptions:
+    upstreamStages:
+    - name: uat
+  promotionMechanisms:
+    gitRepoUpdates:
+    - repoURL: https://github.com/dhpup/kargo-demo-v2.git
+      writeBranch: stage/prod-useast
+      kustomize:
+        images:
+        - image: ghcr.io/dhpup/guestbook
+          path: stages/prod-useast
+    argoCDAppUpdates:
+    - appName: guestbook-prod-useast
+      appNamespace: argocd
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: prod-uswest
+  namespace: guestbook
+  annotations:
+    kargo.akuity.io/color: pink
+spec:
+  subscriptions:
+    upstreamStages:
+    - name: uat
+  promotionMechanisms:
+    gitRepoUpdates:
+    - repoURL: https://github.com/dhpup/kargo-demo-v2.git
+      writeBranch: stage/prod-uswest
+      kustomize:
+        images:
+        - image: ghcr.io/dhpup/guestbook
+          path: stages/prod-uswest
+    argoCDAppUpdates:
+    - appName: guestbook-prod-uswest
+      appNamespace: argocd

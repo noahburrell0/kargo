@@ -2,12 +2,16 @@ apiVersion: kargo.akuity.io/v1alpha1
 kind: Project
 metadata:
   name: guestbook
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 ---
 apiVersion: v1
 kind: Secret
 metadata:
   name: guestbook-repo
   namespace: guestbook
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
   labels:
     kargo.akuity.io/secret-type: repository
 stringData:
@@ -22,6 +26,8 @@ kind: Warehouse
 metadata:
   name: guestbook
   namespace: guestbook
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
   labels:
     kargo.akuity.io/shard: kargo-agent
 spec:
@@ -37,6 +43,8 @@ kind: PromotionPolicy
 metadata:
   name: test-pp
   namespace: guestbook
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 stage: test
 enableAutoPromotion: true
 ---
@@ -47,6 +55,7 @@ metadata:
   namespace: guestbook
   annotations:
     kargo.akuity.io/color: purple
+    argocd.argoproj.io/sync-wave: "2"
   labels:
     kargo.akuity.io/shard: kargo-agent
 spec:
@@ -71,6 +80,7 @@ metadata:
   namespace: guestbook
   annotations:
     kargo.akuity.io/color: blue
+    argocd.argoproj.io/sync-wave: "2"
   labels:
     kargo.akuity.io/shard: kargo-agent
 spec:
@@ -99,6 +109,7 @@ metadata:
   namespace: guestbook
   annotations:
     kargo.akuity.io/color: cyan
+    argocd.argoproj.io/sync-wave: "2"
   labels:
     kargo.akuity.io/shard: kargo-agent
 spec:
@@ -124,6 +135,7 @@ metadata:
   namespace: guestbook
   annotations:
     kargo.akuity.io/color: pink
+    argocd.argoproj.io/sync-wave: "2"
   labels:
     kargo.akuity.io/shard: kargo-agent
 spec:

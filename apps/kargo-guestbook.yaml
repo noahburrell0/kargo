@@ -5,6 +5,23 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 ---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: kargo-repo-secret
+spec:
+  refreshInterval: '600s'
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: gcp
+  target:
+    name: kargo-repo-secret
+    creationPolicy: Owner
+  data:
+  - secretKey: DEMO_GH_PAT
+    remoteRef:
+      key: DEMO_GH_PAT_DH
+---
 apiVersion: v1
 kind: Secret
 metadata:
@@ -19,7 +36,7 @@ stringData:
   project: guestbook
   url: https://github.com/dhpup/kargo.git
   username: dhpup
-  password: ${GITHUB_PAT}
+  password: ${DEMO_GH_PAT}
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Warehouse

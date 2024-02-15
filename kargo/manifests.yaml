@@ -4,14 +4,10 @@ metadata:
   name: guestbook
   annotations:
     argocd.argoproj.io/sync-wave: "1"
----
-apiVersion: kargo.akuity.io/v1alpha1
-kind: PromotionPolicy
-metadata:
-  name: test-pp
-  namespace: guestbook
-stage: test
-enableAutoPromotion: true
+spec: 
+  promotionpolicies:
+  - stage: test
+    enableAutoPromotion: true
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Warehouse

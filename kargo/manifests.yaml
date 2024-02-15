@@ -5,22 +5,6 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 ---
-apiVersion: v1
-kind: Secret
-metadata:
-  name: guestbook-repo
-  namespace: guestbook
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"
-  labels:
-    kargo.akuity.io/secret-type: repository
-stringData:
-  type: git
-  project: guestbook
-  url: https://github.com/dhpup/kargo.git
-  username: dhpup
-  password: ${DEMO_GH_PAT}
----
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Warehouse
 metadata:

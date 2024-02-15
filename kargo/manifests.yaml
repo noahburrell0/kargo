@@ -58,7 +58,7 @@ spec:
       kustomize:
         images:
         - image: ghcr.io/dhpup/guestbook
-          path: stages/test
+          path: guestbook/stages/test
     argoCDAppUpdates:
     - appName: guestbook-test
       appNamespace: argocd
@@ -84,7 +84,7 @@ spec:
       kustomize:
         images:
         - image: ghcr.io/dhpup/guestbook
-          path: stages/uat
+          path: guestbook/stages/uat
     argoCDAppUpdates:
     - appName: guestbook-uat
       appNamespace: argocd
@@ -113,7 +113,7 @@ spec:
       kustomize:
         images:
         - image: ghcr.io/dhpup/guestbook
-          path: stages/prod-useast
+          path: guestbook/stages/prod-useast
     argoCDAppUpdates:
     - appName: guestbook-prod-useast
       appNamespace: argocd
@@ -139,7 +139,7 @@ spec:
       kustomize:
         images:
         - image: ghcr.io/dhpup/guestbook
-          path: stages/prod-uswest
+          path: guestbook/stages/prod-uswest
     argoCDAppUpdates:
     - appName: guestbook-prod-uswest
       appNamespace: argocd

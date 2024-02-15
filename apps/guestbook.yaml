@@ -20,7 +20,7 @@ spec:
       project: default
       source:
         repoURL: https://github.com/dhpup/kargo.git
-        targetRevision: guestbook/stage/{{stage}}
+        targetRevision: stage/{{stage}}
         path: guestbook/stages/{{stage}}
       destination:
         server: mac5

@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: kargo-guestbook
 spec:
-  project: guestbook
+  project: kargo-guestbook
   source:
     repoURL: https://github.com/dhpup/kargo.git
     path: kargo

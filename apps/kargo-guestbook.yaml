@@ -5,10 +5,10 @@ metadata:
 spec:
   project: kargo-demo
   source:
-    repoURL: https://github.com/dhpup/kargo.git
+    repoURL: https://github.com/noahburrell0/kargo.git
     path: kargo
   destination:
-    server: https://b5bxdj947v9xturb-cplane.kargosvcs.akuity.cloud
+    name: kargo
   syncPolicy:
     syncOptions:
     - CreateNamespace=true

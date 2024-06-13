@@ -4,7 +4,7 @@ metadata:
   name: guestbook
   annotations:
     argocd.argoproj.io/sync-wave: "1"
-spec: 
+spec:
   promotionPolicies:
   - stage: test
     autoPromotionEnabled: true
@@ -26,7 +26,7 @@ spec:
   shard: kargo-agent
   subscriptions:
   - git:
-      repoURL: https://github.com/dhpup/kargo.git
+      repoURL: https://github.com/noahburrell0/kargo.git
       branch: main
   - image:
       repoURL: ghcr.io/dhpup/guestbook
@@ -46,7 +46,7 @@ spec:
     warehouse: guestbook
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/dhpup/kargo.git
+    - repoURL: https://github.com/noahburrell0/kargo.git
       writeBranch: stage/test
       kustomize:
         images:
@@ -72,7 +72,7 @@ spec:
     - name: test
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/dhpup/kargo.git
+    - repoURL: https://github.com/noahburrell0/kargo.git
       writeBranch: stage/uat
       kustomize:
         images:
@@ -101,7 +101,7 @@ spec:
     - name: uat
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/dhpup/kargo.git
+    - repoURL: https://github.com/noahburrell0/kargo.git
       writeBranch: stage/prod-useast
       kustomize:
         images:
@@ -127,7 +127,7 @@ spec:
     - name: uat
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/dhpup/kargo.git
+    - repoURL: https://github.com/noahburrell0/kargo.git
       writeBranch: stage/prod-uswest
       kustomize:
         images:

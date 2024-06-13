@@ -23,7 +23,7 @@ metadata:
 #  labels:
 #    kargo.akuity.io/shard: kargo-agent
 spec:
-  shard: kargo-agent
+  shard: noah-demo
   subscriptions:
   - git:
       repoURL: https://github.com/noahburrell0/kargo.git

@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kargo-guestbook
+spec:
+  project: kargo-demo
+  source:
+    repoURL: https://github.com/noahburrell0/kargo.git
+    path: kargo
+  destination:
+    name: kargo
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
